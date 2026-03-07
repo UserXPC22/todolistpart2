@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="todolistpart2" mvid="2228dcbb3b5c44c7929cf0b482ff39b7">
+  <java-to-managed>
+    <entry java-name="crc64acb580b292c891e5/MainActivity" managed-name="todolistpart2.MainActivity, todolistpart2" managed-type-token-id="33554444" />
+    <entry java-name="crc64acb580b292c891e5/MainApplication" managed-name="todolistpart2.MainApplication, todolistpart2" managed-type-token-id="33554445" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc64acb580b292c891e5/MainActivity" managed-name="todolistpart2.MainActivity, todolistpart2" managed-type-token-id="33554444" />
+    <entry java-name="crc64acb580b292c891e5/MainApplication" managed-name="todolistpart2.MainApplication, todolistpart2" managed-type-token-id="33554445" />
+  </managed-to-java>
+</api>
