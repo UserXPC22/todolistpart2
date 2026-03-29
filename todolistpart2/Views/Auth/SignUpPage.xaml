@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="todolistpart2.Views.Auth.SignUpPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0" Padding="30" VerticalOptions="Center">
+               
+            <Label Text="Create account"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#2C2C2A"
+                   Margin="0,0,0,0"/>
+
+            <Label Text="Sign up to get started"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="#888780"
+                   Margin="0,0,0,32"/>
+
+            <Label Text="First Name"
+                   FontSize="13"
+                   TextColor="#888780"
+                   Margin="0,0,0,6"/>
+
+            <Entry x:Name="FirstNameEntry"
+                   Placeholder="John"
+                   FontSize="15"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Last Name"
+                   FontSize="13"
+                   TextColor="#888780"
+                   Margin="0,0,0,6"/>
+
+            <Entry x:Name="LastNameEntry"
+                   Placeholder="Doe"
+                   FontSize="15"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Email"
+                   FontSize="13"
+                   TextColor="#888780"
+                   Margin="0,0,0,6"/>
+
+            <Entry x:Name="EmailEntry"
+                   Placeholder="you@example.com"
+                   Keyboard="Email"
+                   FontSize="15"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Password"
+                   FontSize="13"
+                   TextColor="#888780"
+                   Margin="0,0,0,6"/>
+
+            <Entry x:Name="PasswordEntry"
+                   Placeholder="••••••••"
+                   IsPassword="True"
+                   IsSpellCheckEnabled="False"
+                   IsTextPredictionEnabled="False"
+                   FontSize="15"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Confirm Password"
+                   FontSize="13"
+                   TextColor="#888780"
+                   Margin="0,0,0,6"/>
+
+            <Entry x:Name="ConfirmPasswordEntry"
+                   Placeholder="••••••••"
+                   IsPassword="True"
+                   IsSpellCheckEnabled="False"
+                   IsTextPredictionEnabled="False"
+                   FontSize="15"
+                   Margin="0,0,0,40"/>
+
+            <Button Text="Sign Up"
+                    BackgroundColor="#7F77DD"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="15"
+                    HeightRequest="50"
+                    Clicked="OnSignUpClicked"
+                    Margin="0,0,0,20"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center" 
+                                   Spacing="4"
+                                   Margin="0,0,0,20">
+                <Label Text="Already have an account?"
+                       FontSize="14"
+                       TextColor="#888780"
+                       VerticalOptions="Center"/>
+                <Label Text="Sign in"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="#7F77DD"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignInClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

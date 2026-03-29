@@ -7,6 +7,6 @@ public partial class App : Application
         InitializeComponent();
 
         // This line enables the ability to move between pages
-        MainPage = new NavigationPage(new SignInPage());
+        MainPage = new NavigationPage(new Views.Auth.SignInPage());
     }
 }

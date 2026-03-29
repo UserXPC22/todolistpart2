@@ -1,4 +1,4 @@
-﻿namespace todolistpart2;
+﻿namespace todolistpart2.Views.Main;
 
 public partial class MainPage : ContentPage
 {
