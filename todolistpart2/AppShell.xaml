@@ -4,20 +4,26 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:todolistpart2"
+    xmlns:tasks="clr-namespace:todolistpart2.Views.Tasks"
+    xmlns:main="clr-namespace:todolistpart2.Views.Main"
+    xmlns:auth="clr-namespace:todolistpart2.Views.Auth"
     Title="todolistpart2">
 
     <TabBar>
-        <Tab Title="ToDo" Icon="dotnet_bot.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ToDoPage}" />
-        </Tab>
+    <ShellContent
+        Title="ToDo"
+        Icon="dotnet_bot.png"
+        ContentTemplate="{DataTemplate tasks:ToDoPage}" />
 
-        <Tab Title="Completed" Icon="dotnet_bot.png">
-            <ShellContent ContentTemplate="{DataTemplate local:CompletedPage}" />
-        </Tab>
+    <ShellContent
+        Title="Completed"
+        Icon="dotnet_bot.png"
+        ContentTemplate="{DataTemplate tasks:CompletedPage}" />
 
-        <Tab Title="Profile" Icon="dotnet_bot.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />
-        </Tab>
-    </TabBar>
+    <ShellContent
+        Title="Profile"
+        Icon="dotnet_bot.png"
+        ContentTemplate="{DataTemplate main:ProfilePage}" />
+</TabBar>
 
 </Shell>
