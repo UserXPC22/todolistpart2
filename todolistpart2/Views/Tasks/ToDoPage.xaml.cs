@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace todolistpart2;
+namespace todolistpart2.Views.Tasks;
 
 public partial class ToDoPage : ContentPage
 {

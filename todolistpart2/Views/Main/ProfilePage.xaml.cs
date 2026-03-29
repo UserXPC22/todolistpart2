@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace todolistpart2;
+namespace todolistpart2.Views.Main;
 
 public partial class ProfilePage : ContentPage
 {
@@ -13,6 +13,6 @@ public partial class ProfilePage : ContentPage
     {
         // This resets the app's root to the Sign In page.
         // We use NavigationPage so the user can navigate to "Sign Up" again if they want.
-        Application.Current.MainPage = new NavigationPage(new SignInPage());
+        Application.Current.MainPage = new NavigationPage(new Views.Auth.SignInPage());
     }
 }

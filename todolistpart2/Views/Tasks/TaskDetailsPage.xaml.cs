@@ -1,4 +1,4 @@
-﻿namespace todolistpart2;
+﻿namespace todolistpart2.Views.Tasks;
 
 public partial class TaskDetailsPage : ContentPage
 {
