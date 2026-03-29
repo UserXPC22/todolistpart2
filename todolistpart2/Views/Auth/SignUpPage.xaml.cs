@@ -1,30 +1,58 @@
 ﻿using System;
 using Microsoft.Maui.Controls;
+using todolistpart2.Services;
 
 namespace todolistpart2.Views.Auth;
 
 public partial class SignUpPage : ContentPage
 {
+    private readonly IAuthService _authService;
+
     public SignUpPage()
     {
         InitializeComponent();
+        _authService = new AuthService();
     }
 
-    // You likely have a button for "Sign Up" in your XAML. 
-    // Make sure its Clicked event is set to "OnSignUpClicked"
     private async void OnSignUpClicked(object sender, EventArgs e)
     {
-        // Add your validation logic here (check if entries are empty)
-        
-        await DisplayAlert("Success", "Account created successfully!", "OK");
+        var firstName = FirstNameEntry.Text;
+        var lastName = LastNameEntry.Text;
+        var email = EmailEntry.Text;
+        var password = PasswordEntry.Text;
+        var confirmPassword = ConfirmPasswordEntry.Text;
 
-        // This is the fix: Redirect directly to the Tabbed interface
-        Application.Current.MainPage = new AppShell();
+        if (string.IsNullOrWhiteSpace(firstName) ||
+            string.IsNullOrWhiteSpace(lastName) ||
+            string.IsNullOrWhiteSpace(email) ||
+            string.IsNullOrWhiteSpace(password) ||
+            string.IsNullOrWhiteSpace(confirmPassword))
+        {
+            await DisplayAlert("Error", "Please fill in all fields.", "OK");
+            return;
+        }
+
+        if (password != confirmPassword)
+        {
+            await DisplayAlert("Error", "Passwords do not match.", "OK");
+            return;
+        }
+
+        var (success, message) = await _authService.SignUp(firstName, lastName, email, password, confirmPassword);
+
+        if (success)
+        {
+            await DisplayAlert("Success", message, "OK");
+            await Navigation.PopAsync();
+        }
+        else
+        {
+            await DisplayAlert("Error", message, "OK");
+        }
     }
 
     private async void OnSignInClicked(object sender, EventArgs e)
     {
-        // Returns to the Sign In page
         await Navigation.PopAsync();
     }
 }

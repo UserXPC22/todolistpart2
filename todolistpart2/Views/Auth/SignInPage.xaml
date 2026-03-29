@@ -2,31 +2,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="todolistpart2.Views.Auth.SignInPage"
-             Title="Sign In">
+             NavigationPage.HasNavigationBar="False">
 
-    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
-        
-        <Image Source="dotnet_bot.png" 
-               HeightRequest="150" 
-               HorizontalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout Spacing="0" Padding="30" VerticalOptions="Center">
+            
 
-        <Entry x:Name="EmailEntry"
-               Placeholder="Email address" 
-               Keyboard="Email" />
+            <Label Text="Welcome back"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#2C2C2A"
+                   Margin="0,0,0,6"/>
 
-        <Entry x:Name="PasswordEntry"
-               Placeholder="Password" 
-               IsPassword="True" />
+            <Label Text="Sign in to your account"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="#888780"
+                   Margin="4,0,0,32"/>
 
-        <Button Text="Sign in" 
-                BackgroundColor="#9b9cd7" 
-                TextColor="White"
-                Clicked="OnSignInClicked" />
+            <Label Text="Email"
+                   FontSize="13"
+                   TextColor="#888780"
+                   Margin="0,0,0,6"/>
 
-        <Button Text="Sign up" 
-                BackgroundColor="Transparent" 
-                TextColor="#9b9cd7"
-                Clicked="OnSignUpClicked" />
+            
+                   <Entry x:Name="EmailEntry"
+                          Placeholder="you@example.com"
+                          Keyboard="Email"
+                          BackgroundColor="Transparent"
+                          FontSize="15"
+                          Margin="0,0,0,20"/>
+           
 
-    </VerticalStackLayout>
+            <Label Text="Password"
+                   FontSize="13"
+                   TextColor="#888780"
+                   Margin="0,8,0,6"/>
+            
+                <Entry x:Name="PasswordEntry"
+                       Placeholder="••••••••"
+                       IsPassword="True"
+                       BackgroundColor="Transparent"
+                       FontSize="15"
+                       Margin="0,0,0,40"/>
+
+            <Button Text="Sign in"
+                    BackgroundColor="#7F77DD"
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontSize="15"
+                    HeightRequest="50"
+                    Clicked="OnSignInClicked"
+                    Margin="0,0,0,20"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4" Margin="0,0,0,20">
+                <Label Text="Don't have an account?"
+                       FontSize="14"
+                       TextColor="#888780"
+                       VerticalOptions="Center"/>
+                <Label Text="Sign up"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="#7F77DD"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignUpClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
