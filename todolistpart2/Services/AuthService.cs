@@ -65,4 +65,109 @@ public class AuthService : IAuthService
             return (false, "Something went wrong. Please try again.", 0, "");
         }
     }
+
+    //AddToDoItem
+
+    public async Task<(bool success, string? message, ToDoClass? item)> AddItem(string itemName, string itemDescription, int userId)
+    {
+        try
+        {
+            var data = new
+            {
+                item_name = itemName,
+                item_description = itemDescription,
+                user_id = userId
+            };
+
+            var json = JsonSerializer.Serialize(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync($"{BaseUrl}/addItem_action.php", content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonSerializer.Deserialize<JsonElement>(responseString);
+            var status = result.GetProperty("status").GetInt32();
+            var message = result.GetProperty("message").GetString();
+
+            if (status == 200)
+            {
+                var responseData = result.GetProperty("data");
+
+                var newTask = new ToDoClass 
+                { 
+                    item_id = responseData.GetProperty("item_id").GetInt32(),
+                    item_name = responseData.GetProperty("item_name").GetString(), 
+                    item_description = responseData.GetProperty("item_description").GetString(),
+                    status = responseData.GetProperty("status").GetString(),
+                    user_id = responseData.GetProperty("user_id").GetInt32()
+                };
+                return (true, message, newTask);
+            }
+            return (false, message, null);
+        }
+        catch (Exception ex)
+        {
+            return (false, "Something went wrong. Please try again.", null);
+        }
+    }
+
+    //UpdateToDoItem
+
+    public async Task<(bool success, string? message)> UpdateItem(int itemId, string itemName, string itemDescription)
+    {
+        try
+        {
+            var data = new
+            {
+                item_id = itemId,
+                item_name = itemName,
+                item_description = itemDescription
+            };
+
+            var json = JsonSerializer.Serialize(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync($"{BaseUrl}/editItem_action.php", content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonSerializer.Deserialize<JsonElement>(responseString);
+            var status = result.GetProperty("status").GetInt32();
+            var message = result.GetProperty("message").GetString();
+
+            return (status == 200, message);
+        }
+        catch (Exception)
+        {
+            return (false, "Something went wrong. Please try again.");
+        }
+    }
+
+    //ItemStatusUpdate
+    public async Task<(bool success, string? message)> UpdateItemStatus(int itemId, string status)
+    {
+        try
+        {
+            var data = new
+            {
+                item_id = itemId,
+                status = status
+            };
+
+            var json = JsonSerializer.Serialize(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync($"{BaseUrl}/statusItem_action.php", content);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonSerializer.Deserialize<JsonElement>(responseString);
+            var responseStatus = result.GetProperty("status").GetInt32();
+            var message = result.GetProperty("message").GetString();
+
+            return (responseStatus == 200, message);
+        }
+        catch (Exception)
+        {
+            return (false, "Something went wrong. Please try again.");
+        }
+    }
 }
