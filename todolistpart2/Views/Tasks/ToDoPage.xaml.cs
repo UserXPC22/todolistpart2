@@ -1,21 +1,20 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Linq;
+using todolistpart2.Services;
 
 namespace todolistpart2.Views.Tasks;
 
 public partial class ToDoPage : ContentPage
 {
+    private readonly IAuthService _authService;
+
     // The static list that all other pages reference
     public static ObservableCollection<ToDoClass> MyTasks { get; set; } = new ObservableCollection<ToDoClass>();
 
     public ToDoPage()
     {
         InitializeComponent();
-
-        if (MyTasks.Count == 0)
-        {
-            MyTasks.Add(new ToDoClass { item_name = "Task 1", item_description = "Setup MAUI Navigation", status = "Pending" });
-        }
+        _authService = new AuthService();
 
         RefreshListView();
     }
@@ -51,9 +50,18 @@ public partial class ToDoPage : ContentPage
         var task = button?.CommandParameter as ToDoClass;
         if (task != null)
         {
-            task.status = "Completed";
-            await DisplayAlert("Success", "Task marked as completed!", "OK");
-            RefreshListView();
+            var (success, message) = await _authService.UpdateItemStatus(task.item_id, "inactive");
+
+            if (success)
+            {
+                task.status = "Completed";
+                await DisplayAlert("Success", message ?? "Task marked as completed!", "OK");
+                RefreshListView();
+            }
+            else
+            {
+                await DisplayAlert("Error", message ?? "Failed to complete task.", "OK");
+            }
         }
     }
 
